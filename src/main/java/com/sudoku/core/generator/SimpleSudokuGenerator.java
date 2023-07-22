@@ -40,9 +40,7 @@ public class SimpleSudokuGenerator implements SudokuGenerator {
 				nextRightIndex++;
 			}
 			if (!populate(sudoku, nextLeftIndex, nextRightIndex))
-				for (int j = nextLeftIndex; j < 9; j++)
-					for (int k = nextRightIndex; k < 9; k++)
-						sudoku[nextLeftIndex][nextRightIndex] = 0;
+				sudoku[nextLeftIndex][nextRightIndex] = 0;
 			else
 				return true;
 		}
