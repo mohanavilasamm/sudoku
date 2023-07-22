@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -24,7 +23,7 @@ public class SudokuGeneratorImpl implements SudokuGenerator {
 			return true;
 		int[] currentRow = sudoku[leftIndex];
 		int[] currentColumn = SudokuSlicer.getCurrentColumn(sudoku, rightIndex);
-		int[][] currentSection = SudokuSlicer.getCurrentSubSection(sudoku, leftIndex, rightIndex);
+		int[] currentSection = SudokuSlicer.getCurrentSubSection(sudoku, leftIndex, rightIndex);
 		Set<Integer> usedValues = getUsedValues(currentRow, currentColumn, currentSection);
 		Collections.shuffle(ALLOWED_VALUES);
 		List<Integer> availableValues = getAvailableValues(usedValues);
@@ -48,18 +47,16 @@ public class SudokuGeneratorImpl implements SudokuGenerator {
 		return false;
 	}
 	
-	private Set<Integer> getUsedValues(int[] currentRow, int[] currentColumn, int[][] currentSection) {
+	private Set<Integer> getUsedValues(int[] currentRow, int[] currentColumn, int[] currentSection) {
 		Set<Integer> usedValues = new HashSet<>();
 		for (int i = 0; i < currentRow.length; i++) {
 			if (currentRow[i] != 0)
 				usedValues.add(currentRow[i]);
 			if (currentColumn[i] != 0)
 				usedValues.add(currentColumn[i]);
+			if (currentSection[i] != 0)
+				usedValues.add(currentSection[i]);
 		}
-		for (int i = 0; i < currentSection.length; i++)
-			for (int j = 0; j < currentSection[0].length; j++)
-				if (currentSection[i][j] != 0)
-					usedValues.add(currentSection[i][j]);
 		return usedValues;
 	}
 	
