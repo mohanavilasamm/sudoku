@@ -2,7 +2,7 @@ package com.sudoku.core.masker;
 
 import com.sudoku.core.common.InvalidSudokuException;
 
-public class SudokuMaskerImpl implements SudokuMasker {
+public class SimpleSudokuMasker implements SudokuMasker {
 	
 	private MaskingStrategy maskingStrategy;
 	
@@ -10,7 +10,7 @@ public class SudokuMaskerImpl implements SudokuMasker {
 		return this.maskingStrategy;
 	}
 	
-	public SudokuMaskerImpl(MaskingStrategy maskingStrategy) {
+	public SimpleSudokuMasker(MaskingStrategy maskingStrategy) {
 		this.maskingStrategy = maskingStrategy;
 	}
 

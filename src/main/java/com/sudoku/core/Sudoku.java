@@ -1,9 +1,13 @@
 package com.sudoku.core;
 
-import com.sudoku.core.generator.SudokuGenerator;
-import com.sudoku.core.masker.SudokuMasker;
-import com.sudoku.core.validator.SudokuValidator;
-
-public interface Sudoku extends SudokuGenerator, SudokuValidator, SudokuMasker {
+public interface Sudoku {
+	
+	int[][] generate();
+	
+	boolean validate(int[][] sudoku);
+	
+	int[][] mask(int[][] sudoku);
+	
+	int[][] solve(int[][] sudoku);
 
 }

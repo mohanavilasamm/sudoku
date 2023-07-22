@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import com.sudoku.core.generator.SimpleSudokuGenerator;
 import com.sudoku.core.generator.SudokuGenerator;
+import com.sudoku.core.validator.SimpleSudokuValidator;
+import com.sudoku.core.validator.SudokuValidator;
 
 class SudokuMaskerImplTest {
 
@@ -12,14 +14,10 @@ class SudokuMaskerImplTest {
 		SudokuGenerator sudokuGenerator = new SimpleSudokuGenerator();
 		int[][] sudoku = sudokuGenerator.generate();
 		MaskingStrategy easyMaskingStrategy = new EasyMaskingStrategy();
-		SudokuMasker sudokuMasker = new SudokuMaskerImpl(easyMaskingStrategy);
+		SudokuMasker sudokuMasker = new SimpleSudokuMasker(easyMaskingStrategy);
 		int[][] maskedSudoku = sudokuMasker.mask(sudoku);
-		for(int i=0; i<maskedSudoku.length; i++) {
-			for(int j=0; j<maskedSudoku[i].length; j++)
-				System.out.print(maskedSudoku[i][j]);
-			System.out.println();
-		}
-			
+		SudokuValidator sudokuValidator = new SimpleSudokuValidator();
+		assertFalse(sudokuValidator.isValid(maskedSudoku));
+		//Test is solvable if and when the solver is implemented
 	}
-
 }
