@@ -36,16 +36,15 @@ public class SudokuGeneratorImpl implements SudokuGenerator {
 			for (int j = 0; j < currentSection[0].length; j++)
 				if (currentSection[i][j] != 0)
 					usedValues.add(currentSection[i][j]);
-		List<Integer> availableValues = new ArrayList<>();
 		Collections.shuffle(ALLOWED_VALUES);
+		List<Integer> availableValues = new ArrayList<>();
 		for (int i = 0; i < 9; i++) {
 			if (!usedValues.contains(ALLOWED_VALUES.get(i)))
 				availableValues.add(ALLOWED_VALUES.get(i));
 		}
 		Iterator<Integer> availableValuesIterator = availableValues.iterator();
-		while (availableValuesIterator.hasNext()) {
-			int value = availableValuesIterator.next();
-			sudoku[leftIndex][rightIndex] = value;
+		for(int i=0; i<availableValues.size(); i++) {
+			sudoku[leftIndex][rightIndex] = availableValues.get(i);
 			int nextLeftIndex = leftIndex;
 			int nextRightIndex = rightIndex;
 			if (nextRightIndex == 8) {
@@ -55,8 +54,8 @@ public class SudokuGeneratorImpl implements SudokuGenerator {
 				nextRightIndex++;
 			}
 			if (!populate(sudoku, nextLeftIndex, nextRightIndex))
-				for (int i = nextLeftIndex; i < 9; i++)
-					for (int j = nextRightIndex; j < 9; j++)
+				for (int j = nextLeftIndex; j < 9; j++)
+					for (int k = nextRightIndex; k < 9; k++)
 						sudoku[nextLeftIndex][nextRightIndex] = 0;
 			else
 				return true;
