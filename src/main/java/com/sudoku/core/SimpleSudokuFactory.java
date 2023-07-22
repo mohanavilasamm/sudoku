@@ -13,7 +13,9 @@ import com.sudoku.core.validator.SudokuValidator;
 public class SimpleSudokuFactory implements SudokuFactory{
 
 	@Override
-	public Sudoku createSudoku(Level level) {
+	public Sudoku createSudoku(Level level) throws InvalidSudokuException {
+		if(level == null)
+			throw new InvalidSudokuException("A level is needed to create a sudoku");
 		if(level.equals(Level.EASY)) {
 			SudokuGenerator sudokuGenerator = new SimpleSudokuGenerator();
 			SudokuValidator sudokuValidator = new SimpleSudokuValidator();

@@ -13,9 +13,15 @@ public class SimpleSudoku implements Sudoku{
 	
 	private SudokuMasker sudokuMasker;
 	
-	public SimpleSudoku(SudokuGenerator sudokuGenerator, SudokuValidator sudokuValidator, SudokuMasker sudokuMasker) {
+	public void setSudokuGenerator(SudokuGenerator sudokuGenerator) {
 		this.sudokuGenerator = sudokuGenerator;
+	}
+
+	public void setSudokuValidator(SudokuValidator sudokuValidator) {
 		this.sudokuValidator = sudokuValidator;
+	}
+
+	public void setSudokuMasker(SudokuMasker sudokuMasker) {
 		this.sudokuMasker = sudokuMasker;
 	}
 	
@@ -29,6 +35,13 @@ public class SimpleSudoku implements Sudoku{
 	
 	public SudokuMasker getSudokuMasker() {
 		return this.sudokuMasker;
+	}
+	
+	
+	public SimpleSudoku(SudokuGenerator sudokuGenerator, SudokuValidator sudokuValidator, SudokuMasker sudokuMasker) {
+		this.sudokuGenerator = sudokuGenerator;
+		this.sudokuValidator = sudokuValidator;
+		this.sudokuMasker = sudokuMasker;
 	}
 
 	@Override
