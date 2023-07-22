@@ -25,24 +25,9 @@ public class SudokuGeneratorImpl implements SudokuGenerator {
 		int[] currentRow = sudoku[leftIndex];
 		int[] currentColumn = SudokuSlicer.getCurrentColumn(sudoku, rightIndex);
 		int[][] currentSection = SudokuSlicer.getCurrentSubSection(sudoku, leftIndex, rightIndex);
-		Set<Integer> usedValues = new HashSet<>();
-		for (int i = 0; i < currentRow.length; i++) {
-			if (currentRow[i] != 0)
-				usedValues.add(currentRow[i]);
-			if (currentColumn[i] != 0)
-				usedValues.add(currentColumn[i]);
-		}
-		for (int i = 0; i < currentSection.length; i++)
-			for (int j = 0; j < currentSection[0].length; j++)
-				if (currentSection[i][j] != 0)
-					usedValues.add(currentSection[i][j]);
+		Set<Integer> usedValues = getUsedValues(currentRow, currentColumn, currentSection);
 		Collections.shuffle(ALLOWED_VALUES);
-		List<Integer> availableValues = new ArrayList<>();
-		for (int i = 0; i < 9; i++) {
-			if (!usedValues.contains(ALLOWED_VALUES.get(i)))
-				availableValues.add(ALLOWED_VALUES.get(i));
-		}
-		Iterator<Integer> availableValuesIterator = availableValues.iterator();
+		List<Integer> availableValues = getAvailableValues(usedValues);
 		for(int i=0; i<availableValues.size(); i++) {
 			sudoku[leftIndex][rightIndex] = availableValues.get(i);
 			int nextLeftIndex = leftIndex;
@@ -61,5 +46,29 @@ public class SudokuGeneratorImpl implements SudokuGenerator {
 				return true;
 		}
 		return false;
+	}
+	
+	private Set<Integer> getUsedValues(int[] currentRow, int[] currentColumn, int[][] currentSection) {
+		Set<Integer> usedValues = new HashSet<>();
+		for (int i = 0; i < currentRow.length; i++) {
+			if (currentRow[i] != 0)
+				usedValues.add(currentRow[i]);
+			if (currentColumn[i] != 0)
+				usedValues.add(currentColumn[i]);
+		}
+		for (int i = 0; i < currentSection.length; i++)
+			for (int j = 0; j < currentSection[0].length; j++)
+				if (currentSection[i][j] != 0)
+					usedValues.add(currentSection[i][j]);
+		return usedValues;
+	}
+	
+	private List<Integer> getAvailableValues(Set<Integer> usedValues) {
+		List<Integer> availableValues = new ArrayList<>();
+		for (int i = 0; i < 9; i++) {
+			if (!usedValues.contains(ALLOWED_VALUES.get(i)))
+				availableValues.add(ALLOWED_VALUES.get(i));
+		}
+		return availableValues;
 	}
 }
