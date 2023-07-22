@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class SudokuGeneratorImpl implements SudokuGenerator {
 
-	private static Set<Integer> ALLOWED_VALUES = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
+	private static List<Integer> ALLOWED_VALUES = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
 
 	@Override
 	public int[][] generateSudoku() {
@@ -37,11 +37,10 @@ public class SudokuGeneratorImpl implements SudokuGenerator {
 				if (currentSection[i][j] != 0)
 					usedValues.add(currentSection[i][j]);
 		List<Integer> availableValues = new ArrayList<>();
-		List<Integer> allowedValuesList = new ArrayList<>(ALLOWED_VALUES);
-		Collections.shuffle(allowedValuesList);
+		Collections.shuffle(ALLOWED_VALUES);
 		for (int i = 0; i < 9; i++) {
-			if (!usedValues.contains(allowedValuesList.get(i)))
-				availableValues.add(allowedValuesList.get(i));
+			if (!usedValues.contains(ALLOWED_VALUES.get(i)))
+				availableValues.add(ALLOWED_VALUES.get(i));
 		}
 		Iterator<Integer> availableValuesIterator = availableValues.iterator();
 		while (availableValuesIterator.hasNext()) {
