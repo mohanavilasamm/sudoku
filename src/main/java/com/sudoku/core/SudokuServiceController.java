@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class SudokuServiceController {
-	
+
 	private final SudokuService sudokuService;
-	
+
 	public SudokuServiceController(SudokuService sudokuService) {
 		this.sudokuService = sudokuService;
 	}
-	
+
 	public SudokuService getSudokuService() {
 		return this.sudokuService;
 	}
@@ -22,7 +22,7 @@ public class SudokuServiceController {
 	public Sudoku getSudoku() {
 		return getSudokuService().generateSudoku();
 	}
-	
+
 	@PostMapping("/sudoku")
 	public Sudoku postSudoku(@RequestBody Sudoku sudoku) {
 		return getSudokuService().isValid(sudoku);

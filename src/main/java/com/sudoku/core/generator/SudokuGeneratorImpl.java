@@ -8,56 +8,56 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-public class SudokuGeneratorImpl implements SudokuGenerator{
-	
+public class SudokuGeneratorImpl implements SudokuGenerator {
+
 	private static Set<Integer> ALLOWED_VALUES = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
-	
+
 	@Override
 	public int[][] generateSudoku() {
 		int[][] sudoku = new int[9][9];
 		populate(sudoku, 0, 0);
 		return sudoku;
 	}
-	
+
 	private boolean populate(int[][] sudoku, int leftIndex, int rightIndex) {
-		if(sudoku[8][8]!=0)
+		if (sudoku[8][8] != 0)
 			return true;
 		int[] currentRow = sudoku[leftIndex];
-		int[] currentColumn = SudokuSlicer.getCurrentColumn(sudoku, rightIndex); 
+		int[] currentColumn = SudokuSlicer.getCurrentColumn(sudoku, rightIndex);
 		int[][] currentSection = SudokuSlicer.getCurrentSubSection(sudoku, leftIndex, rightIndex);
 		Set<Integer> usedValues = new HashSet<>();
-		for(int i=0; i<currentRow.length; i++) {
-			if(currentRow[i] != 0)
+		for (int i = 0; i < currentRow.length; i++) {
+			if (currentRow[i] != 0)
 				usedValues.add(currentRow[i]);
-			if(currentColumn[i] != 0)
+			if (currentColumn[i] != 0)
 				usedValues.add(currentColumn[i]);
 		}
-		for(int i=0; i<currentSection.length; i++)
-			for(int j=0; j<currentSection[0].length; j++)
-				if(currentSection[i][j] != 0)
+		for (int i = 0; i < currentSection.length; i++)
+			for (int j = 0; j < currentSection[0].length; j++)
+				if (currentSection[i][j] != 0)
 					usedValues.add(currentSection[i][j]);
 		List<Integer> availableValues = new ArrayList<>();
-		List<Integer>allowedValuesList = new ArrayList<>(ALLOWED_VALUES);
+		List<Integer> allowedValuesList = new ArrayList<>(ALLOWED_VALUES);
 		Collections.shuffle(allowedValuesList);
-		for(int i=0; i<9; i++) {
-			if(!usedValues.contains(allowedValuesList.get(i)))
+		for (int i = 0; i < 9; i++) {
+			if (!usedValues.contains(allowedValuesList.get(i)))
 				availableValues.add(allowedValuesList.get(i));
 		}
 		Iterator<Integer> availableValuesIterator = availableValues.iterator();
-		while(availableValuesIterator.hasNext()) {
+		while (availableValuesIterator.hasNext()) {
 			int value = availableValuesIterator.next();
-			sudoku[leftIndex][rightIndex] = value;			
+			sudoku[leftIndex][rightIndex] = value;
 			int nextLeftIndex = leftIndex;
 			int nextRightIndex = rightIndex;
-			if(nextRightIndex==8) {
+			if (nextRightIndex == 8) {
 				nextLeftIndex++;
 				nextRightIndex = 0;
 			} else {
 				nextRightIndex++;
 			}
-			if(!populate(sudoku, nextLeftIndex, nextRightIndex))
-				for(int i=nextLeftIndex; i<9; i++)
-					for(int j=nextRightIndex; j<9; j++)
+			if (!populate(sudoku, nextLeftIndex, nextRightIndex))
+				for (int i = nextLeftIndex; i < 9; i++)
+					for (int j = nextRightIndex; j < 9; j++)
 						sudoku[nextLeftIndex][nextRightIndex] = 0;
 			else
 				return true;

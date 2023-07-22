@@ -11,7 +11,7 @@ class SudokuGeneratorImplTest {
 	@Test
 	void testPopulate() {
 		SudokuGeneratorImpl sudokuGeneratorImpl = new SudokuGeneratorImpl();
-		int[][] sudoku =  sudokuGeneratorImpl.generateSudoku();
+		int[][] sudoku = sudokuGeneratorImpl.generateSudoku();
 		SudokuValidatorImpl validator = new SudokuValidatorImpl();
 		assertTrue(validator.validate(sudoku));
 	}
