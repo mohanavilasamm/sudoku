@@ -1,4 +1,4 @@
-package com.sudoku.api.vi;
+package com.sudoku.api.v1;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

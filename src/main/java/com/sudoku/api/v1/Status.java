@@ -1,4 +1,4 @@
-package com.sudoku.api.vi;
+package com.sudoku.api.v1;
 
 public enum Status {
 	VALID, INVALID

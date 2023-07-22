@@ -1,6 +1,6 @@
 package com.sudoku.core.validator;
 
-import com.sudoku.api.vi.Sudoku;
+import com.sudoku.api.v1.Sudoku;
 
 public interface SudokuValidator {
 
