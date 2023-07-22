@@ -2,6 +2,6 @@ package com.sudoku.core.generator;
 
 public interface SudokuGenerator {
 
-	public int[][] generate();
+	int[][] generate();
 
 }
