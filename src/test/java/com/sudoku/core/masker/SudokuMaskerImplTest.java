@@ -10,7 +10,7 @@ class SudokuMaskerImplTest {
 	@Test
 	void testMask() {
 		SudokuGenerator sudokuGenerator = new SimpleSudokuGenerator();
-		int[][] sudoku = sudokuGenerator.generateSudoku();
+		int[][] sudoku = sudokuGenerator.generate();
 		MaskingStrategy easyMaskingStrategy = new EasyMaskingStrategy();
 		SudokuMasker sudokuMasker = new SudokuMaskerImpl(easyMaskingStrategy);
 		int[][] maskedSudoku = sudokuMasker.mask(sudoku);

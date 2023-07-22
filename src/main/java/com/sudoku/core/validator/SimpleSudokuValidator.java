@@ -6,11 +6,11 @@ import com.sudoku.core.common.SudokuSlicer;
 import java.util.Arrays;
 import java.util.HashSet;
 
-public class SimpleSudokuValidator {
+public class SimpleSudokuValidator implements SudokuValidator {
 
 	private static Set<Integer> PURE_SET = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
 
-	public boolean validate(int[][] sudoku) throws InvalidSudokuException {
+	public boolean isValid(int[][] sudoku) throws InvalidSudokuException {
 		if (sudoku == null || sudoku.length != 9 || sudoku[0].length != 9)
 			throw new InvalidSudokuException();
 		for (int i = 0; i < sudoku.length; i++)

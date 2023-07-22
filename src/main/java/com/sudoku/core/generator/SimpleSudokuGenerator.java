@@ -14,7 +14,7 @@ public class SimpleSudokuGenerator implements SudokuGenerator {
 	private static List<Integer> ALLOWED_VALUES = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
 
 	@Override
-	public int[][] generateSudoku() {
+	public int[][] generate() {
 		int[][] sudoku = new int[9][9];
 		populate(sudoku, 0, 0);
 		return sudoku;
