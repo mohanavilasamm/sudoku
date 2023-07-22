@@ -1,10 +1,10 @@
 package com.sudoku.core.generator;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 
-import com.sudoku.core.InvalidSudokuException;
+import com.sudoku.core.common.InvalidSudokuException;
+import com.sudoku.core.common.SudokuSlicer;
 
 class SudokuSlicerTest {
 

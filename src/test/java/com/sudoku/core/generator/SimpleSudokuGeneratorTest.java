@@ -4,15 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import com.sudoku.core.validator.SudokuValidatorImpl;
+import com.sudoku.core.validator.SimpleSudokuValidator;
 
-class SudokuGeneratorImplTest {
+class SimpleSudokuGeneratorTest {
 
 	@Test
 	void testPopulate() {
-		SudokuGeneratorImpl sudokuGeneratorImpl = new SudokuGeneratorImpl();
+		SimpleSudokuGenerator sudokuGeneratorImpl = new SimpleSudokuGenerator();
 		int[][] sudoku = sudokuGeneratorImpl.generateSudoku();
-		SudokuValidatorImpl validator = new SudokuValidatorImpl();
+		SimpleSudokuValidator validator = new SimpleSudokuValidator();
 		assertTrue(validator.validate(sudoku));
 	}
 

@@ -1,4 +1,4 @@
-package com.sudoku.core;
+package com.sudoku.core.common;
 
 public class InvalidSudokuException extends RuntimeException {
 

@@ -1,9 +1,7 @@
-package com.sudoku.core.generator;
+package com.sudoku.core.common;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import com.sudoku.core.InvalidSudokuException;
 
 public final class SudokuSlicer {
 

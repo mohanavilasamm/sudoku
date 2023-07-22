@@ -7,7 +7,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class SudokuGeneratorImpl implements SudokuGenerator {
+import com.sudoku.core.common.SudokuSlicer;
+
+public class SimpleSudokuGenerator implements SudokuGenerator {
 
 	private static List<Integer> ALLOWED_VALUES = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
 

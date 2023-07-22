@@ -1,4 +1,4 @@
-package com.sudoku.core;
+package com.sudoku.api.vi;
 
 import org.springframework.stereotype.Service;
 

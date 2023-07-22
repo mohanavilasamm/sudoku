@@ -1,14 +1,13 @@
 package com.sudoku.core.validator;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 
-class SudokuValidatorImplTest {
+class SimpleSudokuValidatorTest {
 
 	@Test
 	void testValidate() {
-		SudokuValidatorImpl validator = new SudokuValidatorImpl();
+		SimpleSudokuValidator validator = new SimpleSudokuValidator();
 		assertFalse(validator.validate(null));
 		assertFalse(validator
 				.validate(new int[][] { new int[] { 1, 2, 3 }, new int[] { 4, 5, 6 }, new int[] { 7, 8, 9 } }));
@@ -21,7 +20,7 @@ class SudokuValidatorImplTest {
 
 	@Test
 	void testIsArrayValid() {
-		SudokuValidatorImpl validator = new SudokuValidatorImpl();
+		SimpleSudokuValidator validator = new SimpleSudokuValidator();
 		assertTrue(validator.isValidArray(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }));
 		assertTrue(validator.isValidArray(new int[] { 9, 2, 3, 4, 5, 6, 7, 8, 1 }));
 		assertFalse(validator.isValidArray(new int[] { 11, 2, 3, 4, 5, 6, 7, 8, 9 }));
@@ -33,18 +32,4 @@ class SudokuValidatorImplTest {
 		assertFalse(validator.isValidArray(new int[] {}));
 		assertFalse(validator.isValidArray(null));
 	}
-
-	@Test
-	void testIsSubSectionValid() {
-		SudokuValidatorImpl validator = new SudokuValidatorImpl();
-		assertFalse(validator.isValidSubSection(null));
-		assertFalse(validator.isValidSubSection(
-				new int[][] { new int[] { 1, 1, 3 }, new int[] { 4, 5, 6 }, new int[] { 7, 8, 9 } }));
-		assertFalse(validator.isValidSubSection(new int[][] { new int[] { 1, 1, 3 }, new int[] { 4, 5, 6 } }));
-		assertFalse(validator.isValidSubSection(
-				new int[][] { new int[] { 1, 1, 3, 4 }, new int[] { 4, 5, 6 }, new int[] { 7, 8, 9 } }));
-		assertTrue(validator.isValidSubSection(
-				new int[][] { new int[] { 1, 2, 3 }, new int[] { 4, 5, 6 }, new int[] { 7, 8, 9 } }));
-	}
-
 }
