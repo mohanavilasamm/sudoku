@@ -7,4 +7,8 @@ public class InvalidSudokuException extends RuntimeException {
 	public InvalidSudokuException() {
 		super("This sudoku is invalid");
 	}
+	
+	public InvalidSudokuException(String message) {
+		super(message);
+	}
 }
