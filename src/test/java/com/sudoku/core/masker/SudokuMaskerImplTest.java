@@ -5,13 +5,14 @@ import org.junit.jupiter.api.Test;
 import com.sudoku.core.generator.SimpleSudokuGenerator;
 import com.sudoku.core.generator.SudokuGenerator;
 
-class EasySudokuMaskerTest {
+class SudokuMaskerImplTest {
 
 	@Test
 	void testMask() {
 		SudokuGenerator sudokuGenerator = new SimpleSudokuGenerator();
 		int[][] sudoku = sudokuGenerator.generateSudoku();
-		SudokuMasker sudokuMasker = new EasySudokuMasker();
+		MaskingStrategy easyMaskingStrategy = new EasyMaskingStrategy();
+		SudokuMasker sudokuMasker = new SudokuMaskerImpl(easyMaskingStrategy);
 		int[][] maskedSudoku = sudokuMasker.mask(sudoku);
 		for(int i=0; i<maskedSudoku.length; i++) {
 			for(int j=0; j<maskedSudoku[i].length; j++)
