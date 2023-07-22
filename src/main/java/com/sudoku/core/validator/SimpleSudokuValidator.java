@@ -1,9 +1,8 @@
 package com.sudoku.core.validator;
 
 import java.util.Set;
-
+import com.sudoku.core.common.InvalidSudokuException;
 import com.sudoku.core.common.SudokuSlicer;
-
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -11,9 +10,9 @@ public class SimpleSudokuValidator {
 
 	private static Set<Integer> PURE_SET = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
 
-	public boolean validate(int[][] sudoku) {
+	public boolean validate(int[][] sudoku) throws InvalidSudokuException {
 		if (sudoku == null || sudoku.length != 9 || sudoku[0].length != 9)
-			return false;
+			throw new InvalidSudokuException();
 		for (int i = 0; i < sudoku.length; i++)
 			if (!isValidArray(sudoku[i]))
 				return false;

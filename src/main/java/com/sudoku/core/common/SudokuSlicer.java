@@ -5,7 +5,7 @@ import java.util.Map;
 
 public final class SudokuSlicer {
 
-	public static int[] getCurrentColumn(int[][] sudoku, int rightIndex) {
+	public static int[] getCurrentColumn(int[][] sudoku, int rightIndex) throws InvalidSudokuException {
 		if (sudoku == null || sudoku.length != 9 || sudoku[0].length != 9)
 			throw new InvalidSudokuException();
 		return new int[] { sudoku[0][rightIndex], sudoku[1][rightIndex], sudoku[2][rightIndex], sudoku[3][rightIndex],
@@ -13,7 +13,7 @@ public final class SudokuSlicer {
 				sudoku[8][rightIndex] };
 	}
 
-	public static int[] getCurrentSubSection(int[][] sudoku, int leftIndex, int rightIndex) {
+	public static int[] getCurrentSubSection(int[][] sudoku, int leftIndex, int rightIndex) throws InvalidSudokuException {
 		if (sudoku == null || sudoku.length != 9 || sudoku[0].length != 9)
 			throw new InvalidSudokuException();
 		int[] section = new int[9];
