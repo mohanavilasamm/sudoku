@@ -2,6 +2,7 @@ package com.sudoku.core;
 
 import com.sudoku.core.generator.SudokuGenerator;
 import com.sudoku.core.masker.SudokuMasker;
+import com.sudoku.core.solver.SudokuSolver;
 import com.sudoku.core.common.InvalidSudokuException;
 import com.sudoku.core.validator.SudokuValidator;
 
@@ -13,6 +14,8 @@ public class SimpleSudoku implements Sudoku{
 	
 	private SudokuMasker sudokuMasker;
 	
+	private SudokuSolver sudokuSolver;
+	
 	public void setSudokuGenerator(SudokuGenerator sudokuGenerator) {
 		this.sudokuGenerator = sudokuGenerator;
 	}
@@ -23,6 +26,10 @@ public class SimpleSudoku implements Sudoku{
 
 	public void setSudokuMasker(SudokuMasker sudokuMasker) {
 		this.sudokuMasker = sudokuMasker;
+	}
+	
+	public void setSudokuSolver(SudokuSolver sudokuSolver) {
+		this.sudokuSolver = sudokuSolver;
 	}
 	
 	public SudokuGenerator getSudokuGenerator() {
@@ -37,11 +44,16 @@ public class SimpleSudoku implements Sudoku{
 		return this.sudokuMasker;
 	}
 	
+	public SudokuSolver getSudokuSolver() {
+		return this.sudokuSolver;
+	}
 	
-	public SimpleSudoku(SudokuGenerator sudokuGenerator, SudokuValidator sudokuValidator, SudokuMasker sudokuMasker) {
+	
+	public SimpleSudoku(SudokuGenerator sudokuGenerator, SudokuValidator sudokuValidator, SudokuMasker sudokuMasker, SudokuSolver sudokuSolver) {
 		this.sudokuGenerator = sudokuGenerator;
 		this.sudokuValidator = sudokuValidator;
 		this.sudokuMasker = sudokuMasker;
+		this.sudokuSolver = sudokuSolver;
 	}
 
 	@Override
@@ -61,6 +73,6 @@ public class SimpleSudoku implements Sudoku{
 
 	@Override
 	public int[][] solve(int[][] sudoku) throws InvalidSudokuException {
-		throw new InvalidSudokuException("Unimplememnted method");
+		return getSudokuSolver().solve(sudoku);
 	}
 }

@@ -10,6 +10,8 @@ import com.sudoku.core.masker.EasyMaskingStrategy;
 import com.sudoku.core.masker.MaskingStrategy;
 import com.sudoku.core.masker.SimpleSudokuMasker;
 import com.sudoku.core.masker.SudokuMasker;
+import com.sudoku.core.solver.SimpleSudokuSolver;
+import com.sudoku.core.solver.SudokuSolver;
 import com.sudoku.core.validator.SimpleSudokuValidator;
 import com.sudoku.core.validator.SudokuValidator;
 
@@ -23,7 +25,8 @@ class SimpleSudokuTest {
 		SudokuValidator sudokuValidator = new SimpleSudokuValidator();
 		MaskingStrategy sudokuMaskingStrategy = new EasyMaskingStrategy();
 		SudokuMasker sudokuMasker = new SimpleSudokuMasker(sudokuMaskingStrategy);
-		this.sudoku = new SimpleSudoku(sudokuGenerator, sudokuValidator, sudokuMasker);
+		SudokuSolver sudokuSolver = new SimpleSudokuSolver(sudokuValidator);
+		this.sudoku = new SimpleSudoku(sudokuGenerator, sudokuValidator, sudokuMasker, sudokuSolver);
 	}
 
 	@Test
@@ -51,6 +54,14 @@ class SimpleSudokuTest {
 		assertFalse(sudoku.validate(invalidSudoku));
 		final int[][] invalid = new int[3][3];
 		assertThrows(InvalidSudokuException.class, () -> sudoku.validate(invalid));
+	}
+	
+	@Test
+	void testSolve() {
+		int[][] simpleSudoku = sudoku.generate();
+		int[][] maskedSudoku = sudoku.mask(simpleSudoku);
+		int[][] solveSudoku = sudoku.solve(maskedSudoku);
+		assertTrue(sudoku.validate(solveSudoku));
 	}
 
 }

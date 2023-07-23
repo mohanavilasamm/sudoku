@@ -9,6 +9,7 @@ import com.sudoku.core.masker.SimpleSudokuMasker;
 import com.sudoku.core.masker.SudokuMasker;
 import com.sudoku.core.validator.SimpleSudokuValidator;
 import com.sudoku.core.validator.SudokuValidator;
+import com.sudoku.core.solver.*;
 
 public class SimpleSudokuFactory implements SudokuFactory{
 
@@ -21,7 +22,8 @@ public class SimpleSudokuFactory implements SudokuFactory{
 			SudokuValidator sudokuValidator = new SimpleSudokuValidator();
 			MaskingStrategy sudokuMaskingStrategy = new EasyMaskingStrategy();
 			SudokuMasker sudokuMasker = new SimpleSudokuMasker(sudokuMaskingStrategy);
-			Sudoku sudoku = new SimpleSudoku(sudokuGenerator, sudokuValidator, sudokuMasker);
+			SudokuSolver sudokuSolver = new SimpleSudokuSolver(sudokuValidator);
+			Sudoku sudoku = new SimpleSudoku(sudokuGenerator, sudokuValidator, sudokuMasker, sudokuSolver);
 			return sudoku;
 		} else {
 			throw new InvalidSudokuException("Unimplemented levels");
