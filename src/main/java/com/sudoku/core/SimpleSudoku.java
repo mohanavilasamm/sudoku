@@ -16,22 +16,6 @@ public class SimpleSudoku implements Sudoku{
 	
 	private SudokuSolver sudokuSolver;
 	
-	public void setSudokuGenerator(SudokuGenerator sudokuGenerator) {
-		this.sudokuGenerator = sudokuGenerator;
-	}
-
-	public void setSudokuValidator(SudokuValidator sudokuValidator) {
-		this.sudokuValidator = sudokuValidator;
-	}
-
-	public void setSudokuMasker(SudokuMasker sudokuMasker) {
-		this.sudokuMasker = sudokuMasker;
-	}
-	
-	public void setSudokuSolver(SudokuSolver sudokuSolver) {
-		this.sudokuSolver = sudokuSolver;
-	}
-	
 	public SudokuGenerator getSudokuGenerator() {
 		return this.sudokuGenerator;
 	}
