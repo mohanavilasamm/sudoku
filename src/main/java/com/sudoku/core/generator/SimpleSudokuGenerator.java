@@ -1,17 +1,19 @@
 package com.sudoku.core.generator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import com.sudoku.core.common.SudokuSlicer;
+import com.sudoku.core.common.SudokuValueAssister;
 
 public class SimpleSudokuGenerator implements SudokuGenerator {
 
-	private static List<Integer> ALLOWED_VALUES = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
+	private List<Integer> allowedValues = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
+	
+	public List<Integer> getAllowedValues() {
+		return this.allowedValues;
+	}
 
 	@Override
 	public int[][] generate() {
@@ -26,9 +28,9 @@ public class SimpleSudokuGenerator implements SudokuGenerator {
 		int[] currentRow = sudoku[leftIndex];
 		int[] currentColumn = SudokuSlicer.getCurrentColumn(sudoku, rightIndex);
 		int[] currentSection = SudokuSlicer.getCurrentSubSection(sudoku, leftIndex, rightIndex);
-		Set<Integer> usedValues = getUsedValues(currentRow, currentColumn, currentSection);
-		Collections.shuffle(ALLOWED_VALUES);
-		List<Integer> availableValues = getAvailableValues(usedValues);
+		Set<Integer> usedValues = SudokuValueAssister.getUsedValues(currentRow, currentColumn, currentSection);
+		Collections.shuffle(getAllowedValues());
+		List<Integer> availableValues = SudokuValueAssister.getAvailableValues(usedValues, getAllowedValues());
 		for(int i=0; i<availableValues.size(); i++) {
 			sudoku[leftIndex][rightIndex] = availableValues.get(i);
 			int nextLeftIndex = leftIndex;
@@ -45,27 +47,5 @@ public class SimpleSudokuGenerator implements SudokuGenerator {
 				return true;
 		}
 		return false;
-	}
-	
-	private Set<Integer> getUsedValues(int[] currentRow, int[] currentColumn, int[] currentSection) {
-		Set<Integer> usedValues = new HashSet<>();
-		for (int i = 0; i < currentRow.length; i++) {
-			if (currentRow[i] != 0)
-				usedValues.add(currentRow[i]);
-			if (currentColumn[i] != 0)
-				usedValues.add(currentColumn[i]);
-			if (currentSection[i] != 0)
-				usedValues.add(currentSection[i]);
-		}
-		return usedValues;
-	}
-	
-	private List<Integer> getAvailableValues(Set<Integer> usedValues) {
-		List<Integer> availableValues = new ArrayList<>();
-		for (int i = 0; i < 9; i++) {
-			if (!usedValues.contains(ALLOWED_VALUES.get(i)))
-				availableValues.add(ALLOWED_VALUES.get(i));
-		}
-		return availableValues;
 	}
 }

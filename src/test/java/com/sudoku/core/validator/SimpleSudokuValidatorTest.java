@@ -2,14 +2,15 @@ package com.sudoku.core.validator;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import com.sudoku.core.common.InvalidSudokuException;
 
 class SimpleSudokuValidatorTest {
 
 	@Test
 	void testValidate() {
 		SimpleSudokuValidator validator = new SimpleSudokuValidator();
-		assertFalse(validator.isValid(null));
-		assertFalse(validator
+		assertThrows(InvalidSudokuException.class, () -> validator.isValid(null));
+		assertThrows(InvalidSudokuException.class, () -> validator
 				.isValid(new int[][] { new int[] { 1, 2, 3 }, new int[] { 4, 5, 6 }, new int[] { 7, 8, 9 } }));
 		assertTrue(validator.isValid(new int[][] { 
 				new int[] { 6, 3, 9, 5, 7, 4, 1, 8, 2 },
