@@ -6,6 +6,7 @@ import com.sudoku.core.generator.SimpleSudokuGenerator;
 import com.sudoku.core.generator.SudokuGenerator;
 import com.sudoku.core.validator.SimpleSudokuValidator;
 import com.sudoku.core.validator.SudokuValidator;
+import com.sudoku.core.solver.*;
 
 class SudokuMaskerImplTest {
 
@@ -18,6 +19,8 @@ class SudokuMaskerImplTest {
 		int[][] maskedSudoku = sudokuMasker.mask(sudoku);
 		SudokuValidator sudokuValidator = new SimpleSudokuValidator();
 		assertFalse(sudokuValidator.isValid(maskedSudoku));
-		//Test is solvable if and when the solver is implemented
+		SudokuSolver solver = new SimpleSudokuSolver(sudokuValidator);
+		int[][] solvedSudoku = solver.solve(maskedSudoku);
+		assertTrue(sudokuValidator.isValid(solvedSudoku));
 	}
 }

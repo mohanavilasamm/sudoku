@@ -20,30 +20,30 @@ public class EasyMaskingStrategy implements MaskingStrategy {
 				if (rightIndex==0 || rightIndex==3 || rightIndex==6) {
 					//check middle and end columns
 					//if there are three values mask one
-					mask(maskedSudoku, leftIndex, rightIndex, SudokuSlicer.getCurrentColumn(sudoku, rightIndex + 1), SudokuSlicer.getCurrentColumn(sudoku, rightIndex + 2));
+					mask(maskedSudoku, leftIndex, rightIndex, SudokuSlicer.getCurrentColumn(maskedSudoku, rightIndex + 1), SudokuSlicer.getCurrentColumn(maskedSudoku, rightIndex + 2));
 
 				} else if (rightIndex==1 || rightIndex==4 || rightIndex==7) {
 					//check left and right columns
 					//if there are three values mask one
-					mask(maskedSudoku, leftIndex, rightIndex, SudokuSlicer.getCurrentColumn(sudoku, rightIndex - 1), SudokuSlicer.getCurrentColumn(sudoku, rightIndex + 1));
+					mask(maskedSudoku, leftIndex, rightIndex, SudokuSlicer.getCurrentColumn(maskedSudoku, rightIndex - 1), SudokuSlicer.getCurrentColumn(maskedSudoku, rightIndex + 1));
 				} else if (rightIndex==2 || rightIndex==5 || rightIndex==8) {
 					//check left and middle columns
 					//if there are three values mask one
-					mask(maskedSudoku, leftIndex, rightIndex, SudokuSlicer.getCurrentColumn(sudoku, rightIndex - 1), SudokuSlicer.getCurrentColumn(sudoku, rightIndex - 2));
+					mask(maskedSudoku, leftIndex, rightIndex, SudokuSlicer.getCurrentColumn(maskedSudoku, rightIndex - 1), SudokuSlicer.getCurrentColumn(maskedSudoku, rightIndex - 2));
 				}
 				if (leftIndex==0 || leftIndex==3 || leftIndex==6) {
 					//check middle and bottom rows
 					//if there are three values mask one
-					mask(maskedSudoku, leftIndex, rightIndex, sudoku[leftIndex + 1], sudoku[leftIndex + 2]);
+					mask(maskedSudoku, leftIndex, rightIndex, maskedSudoku[leftIndex + 1], maskedSudoku[leftIndex + 2]);
 
 				} else if (leftIndex==1 || leftIndex==4 || leftIndex==7) {
 					//check top and bottom rows
 					//if there are three values mask one
-					mask(maskedSudoku, leftIndex, rightIndex, sudoku[leftIndex - 1], sudoku[leftIndex + 1]);
+					mask(maskedSudoku, leftIndex, rightIndex, maskedSudoku[leftIndex - 1], maskedSudoku[leftIndex + 1]);
 				} else if (leftIndex==2 || leftIndex==5 || leftIndex==8) {
 					//check top and middle rows
 					//if there are three values mask one
-					mask(maskedSudoku, leftIndex, rightIndex, sudoku[leftIndex - 2], sudoku[leftIndex - 1]);
+					mask(maskedSudoku, leftIndex, rightIndex, maskedSudoku[leftIndex - 2], maskedSudoku[leftIndex - 1]);
 				}
 				
 			}

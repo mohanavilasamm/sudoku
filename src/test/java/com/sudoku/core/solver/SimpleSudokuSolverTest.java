@@ -24,7 +24,7 @@ class SimpleSudokuSolverTest {
 		SudokuSolver solver = new SimpleSudokuSolver(validator);
 		int [][] solvedSudoku = solver.solve(maskedSudoku);
 		assertTrue(validator.isValid(solvedSudoku));
-		//assertArrayEquals(sudoku, solvedSudoku);
+		assertArrayEquals(sudoku, solvedSudoku);
 	}
 
 }
