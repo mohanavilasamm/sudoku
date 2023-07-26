@@ -2,7 +2,6 @@ package com.sudoku.core;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import com.sudoku.core.common.InvalidSudokuException;
 import com.sudoku.core.masker.EasyMaskingStrategy;
 import com.sudoku.core.masker.SimpleSudokuMasker;
 
