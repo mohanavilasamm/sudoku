@@ -19,7 +19,7 @@ public class SudokuServiceController {
 
 	@PostMapping("/sudoku")
 	public GenerateSudokuResponse generateSudoku(@RequestBody GenerateSudokuRequest genereateRequest) {
-		return getSudokuService().generateEasySudoku(genereateRequest);
+		return getSudokuService().generateSudoku(genereateRequest);
 	}
 
 }

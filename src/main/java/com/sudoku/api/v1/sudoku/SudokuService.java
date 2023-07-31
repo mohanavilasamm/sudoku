@@ -23,7 +23,7 @@ public class SudokuService {
 		return this.sudokuRepository;
 	}
 	
-	public GenerateSudokuResponse generateEasySudoku(GenerateSudokuRequest request) throws SudokuApiException{
+	public GenerateSudokuResponse generateSudoku(GenerateSudokuRequest request) throws SudokuApiException{
 		GenerateSudokuResponse response;
 		if(Level.EASY.equals(request.level())) {
 			SudokuProviderFactory easySudokuProviderFactory
