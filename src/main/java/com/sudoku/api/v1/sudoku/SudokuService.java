@@ -29,7 +29,7 @@ public class SudokuService {
 			sudokuProviderFactory = new EasySudokuProviderFactory();
 		} else 
 			throw new SudokuApiException("Level not implemented");
-						SudokuProvider sudokuProvider = sudokuProviderFactory.createSudokuProvider();
+		SudokuProvider sudokuProvider = sudokuProviderFactory.createSudokuProvider();
 		int[][] sudoku = sudokuProvider.generate();
 		Sudoku sudokuEntity = new Sudoku(sudokuProvider.serialize(sudoku), request.requestedBy(), Level.EASY, Status.IN_PROGRESS, Timestamp.from(Instant.now()), null);
 		getSudokuRepository().save(sudokuEntity);
