@@ -26,8 +26,7 @@ public class SudokuService {
 	public GenerateSudokuResponse generateSudoku(GenerateSudokuRequest request) throws SudokuApiException{
 		GenerateSudokuResponse response;
 		if(Level.EASY.equals(request.level())) {
-			SudokuProviderFactory easySudokuProviderFactory
-			 = new EasySudokuProviderFactory();
+			SudokuProviderFactory easySudokuProviderFactory = new EasySudokuProviderFactory();
 			SudokuProvider sudokuProvider = easySudokuProviderFactory.createSudokuProvider();
 			int[][] sudoku = sudokuProvider.generate();
 			Sudoku sudokuEntity = new Sudoku(sudokuProvider.serialize(sudoku), request.requestedBy(), Level.EASY, Status.IN_PROGRESS, Timestamp.from(Instant.now()), null);
