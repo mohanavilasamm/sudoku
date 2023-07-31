@@ -20,7 +20,7 @@ public class Sudoku {
     private Level sudokuLevel;
     private Status sudokuStatus;
     private Timestamp createdAt;
-	private Timestamp modifiedAt;
+    private Timestamp modifiedAt;
 
     protected Sudoku() {}
 
