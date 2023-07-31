@@ -1,6 +1,6 @@
 package com.sudoku.core;
 
-public interface Sudoku {
+public interface SudokuProvider {
 	
 	int[][] generate();
 	
@@ -9,5 +9,9 @@ public interface Sudoku {
 	int[][] mask(int[][] sudoku);
 	
 	int[][] solve(int[][] sudoku);
+
+	int[] serialize(int[][] sudokuMatrix);
+
+	int[][] deserialize(int[] sudokuArray);
 
 }

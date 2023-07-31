@@ -1,12 +1,13 @@
-package com.sudoku.api.v1;
+package com.sudoku.api.v1.sudoku;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class SudokuServiceController {
 
-	private final SudokuService sudokuService;
+	private SudokuService sudokuService;
 
 	public SudokuServiceController(SudokuService sudokuService) {
 		this.sudokuService = sudokuService;
@@ -17,8 +18,8 @@ public class SudokuServiceController {
 	}
 
 	@PostMapping("/sudoku")
-	public Sudoku postSudoku() {
-		return getSudokuService().generateEasySudoku();
+	public GenerateSudokuResponse generateSudoku(@RequestBody GenerateSudokuRequest genereateRequest) {
+		return getSudokuService().generateEasySudoku(genereateRequest);
 	}
 
 }

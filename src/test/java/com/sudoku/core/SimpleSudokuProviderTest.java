@@ -10,14 +10,16 @@ import com.sudoku.core.masker.EasyMaskingStrategy;
 import com.sudoku.core.masker.MaskingStrategy;
 import com.sudoku.core.masker.SimpleSudokuMasker;
 import com.sudoku.core.masker.SudokuMasker;
+import com.sudoku.core.serialization.Serializer;
+import com.sudoku.core.serialization.SimpleSerializer;
 import com.sudoku.core.solver.SimpleSudokuSolver;
 import com.sudoku.core.solver.SudokuSolver;
 import com.sudoku.core.validator.SimpleSudokuValidator;
 import com.sudoku.core.validator.SudokuValidator;
 
-class SimpleSudokuTest {
+class SimpleSudokuProviderTest {
 	
-	private Sudoku sudoku;
+	private SudokuProvider sudoku;
 	
 	@BeforeEach
 	public void initEach(){
@@ -26,7 +28,8 @@ class SimpleSudokuTest {
 		MaskingStrategy sudokuMaskingStrategy = new EasyMaskingStrategy();
 		SudokuMasker sudokuMasker = new SimpleSudokuMasker(sudokuMaskingStrategy);
 		SudokuSolver sudokuSolver = new SimpleSudokuSolver(sudokuValidator);
-		this.sudoku = new SimpleSudoku(sudokuGenerator, sudokuValidator, sudokuMasker, sudokuSolver);
+		Serializer sudokuSerializer = new SimpleSerializer();
+		this.sudoku = new SimpleSudokuProvider(sudokuGenerator, sudokuValidator, sudokuMasker, sudokuSolver, sudokuSerializer);
 	}
 
 	@Test

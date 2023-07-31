@@ -1,0 +1,1 @@
+alter table SUDOKU rename column SUDOKU to SERIALIZED_SUDOKU;

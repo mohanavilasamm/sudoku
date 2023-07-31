@@ -7,20 +7,23 @@ import com.sudoku.core.masker.EasyMaskingStrategy;
 import com.sudoku.core.masker.MaskingStrategy;
 import com.sudoku.core.masker.SimpleSudokuMasker;
 import com.sudoku.core.masker.SudokuMasker;
+import com.sudoku.core.serialization.Serializer;
+import com.sudoku.core.serialization.SimpleSerializer;
 import com.sudoku.core.validator.SimpleSudokuValidator;
 import com.sudoku.core.validator.SudokuValidator;
 import com.sudoku.core.solver.*;
 
-public class EasySudokuFactory implements SudokuFactory{
+public class EasySudokuProviderFactory implements SudokuProviderFactory{
 
 	@Override
-	public Sudoku createSudoku() throws InvalidSudokuException {
+	public SudokuProvider createSudokuProvider() throws InvalidSudokuException {
 			SudokuGenerator sudokuGenerator = new SimpleSudokuGenerator();
 			SudokuValidator sudokuValidator = new SimpleSudokuValidator();
 			MaskingStrategy sudokuMaskingStrategy = new EasyMaskingStrategy();
 			SudokuMasker sudokuMasker = new SimpleSudokuMasker(sudokuMaskingStrategy);
 			SudokuSolver sudokuSolver = new SimpleSudokuSolver(sudokuValidator);
-			Sudoku sudoku = new SimpleSudoku(sudokuGenerator, sudokuValidator, sudokuMasker, sudokuSolver);
+			Serializer sudokuSerializer = new SimpleSerializer();
+			SudokuProvider sudoku = new SimpleSudokuProvider(sudokuGenerator, sudokuValidator, sudokuMasker, sudokuSolver, sudokuSerializer);
 			return sudoku;	
 	}
 
