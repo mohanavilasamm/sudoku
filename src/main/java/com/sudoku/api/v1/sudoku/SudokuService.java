@@ -1,7 +1,5 @@
 package com.sudoku.api.v1.sudoku;
 
-import java.sql.Timestamp;
-import java.time.Instant;
 import org.springframework.stereotype.Service;
 import com.sudoku.api.v1.Level;
 import com.sudoku.api.v1.Status;
@@ -31,7 +29,7 @@ public class SudokuService {
 			throw new SudokuApiException("Level not implemented");
 		SudokuProvider sudokuProvider = sudokuProviderFactory.createSudokuProvider();
 		int[][] sudoku = sudokuProvider.generate();
-		Sudoku sudokuEntity = new Sudoku(sudokuProvider.serialize(sudoku), request.requestedBy(), Level.EASY, Status.IN_PROGRESS, Timestamp.from(Instant.now()), null);
+		Sudoku sudokuEntity = new Sudoku(sudokuProvider.serialize(sudoku), request.requestedBy(), Level.EASY, Status.IN_PROGRESS);
 		getSudokuRepository().save(sudokuEntity);
 		GenerateSudokuResponse response = new GenerateSudokuResponse(sudokuEntity.getSudokuId(), sudoku, sudokuEntity.getSudokuStatus());
 		return response;
