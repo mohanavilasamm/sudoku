@@ -3,8 +3,6 @@ package com.sudoku.api.v1.sudoku;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.UUID;
-import com.sudoku.api.v1.Level;
-import com.sudoku.api.v1.Status;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,44 +16,63 @@ public class Sudoku {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID sudokuId;
-    private int[] serializedSudoku;
+    private int[] generatedSudoku;
     private UUID createdBy; 
-    private Level sudokuLevel;
-    private Status sudokuStatus;
+    private String sudokuLevel;
+    private String sudokuStatus;
     private Timestamp createdAt;
 	private Timestamp modifiedAt;
+    private int[] maskedSudoku;
+    private int[] solvedSudoku;
 
     protected Sudoku() {}
 
-    public Sudoku(int[] serializedSudoku, UUID createdBy, Level level, Status status) {
-        this.serializedSudoku = serializedSudoku;
+    public Sudoku(int[] generatedSudoku, UUID createdBy, String level, String status, int[] maskedSudoku) {
+        this.generatedSudoku = generatedSudoku;
         this.createdBy = createdBy;
         this.sudokuLevel = level;
         this.sudokuStatus = status;
+        this.maskedSudoku = maskedSudoku;
     }
 
     public UUID getSudokuId() {
         return this.sudokuId;
     }
 
-    public int[] getSerializedSudoku() {
-        return this.serializedSudoku;
+    public int[] getGeneratedSudoku() {
+        return this.generatedSudoku;
     }
 
     public UUID getCreatedBy() {
         return this.createdBy;
     }
 
-    public Level getSudokuLevel() {
+    public String getSudokuLevel() {
         return this.sudokuLevel;
     }
 
-    public Status getSudokuStatus() {
+    public String getSudokuStatus() {
         return this.sudokuStatus;
     }
 
     public Timestamp getCreatedAt() {
         return this.createdAt;
+    }
+
+    public int[] getMaskedSudoku() {
+        return this.maskedSudoku;
+    }
+
+    public void setMaskedSudoku(int[] maskedSudoku) {
+        this.maskedSudoku = maskedSudoku;
+    }
+
+    public int[] getSolvedSudoku() {
+        return this.solvedSudoku;
+    }
+
+    public void setSolvedSudoku(int[] solvedSudoku) {
+        this.solvedSudoku = solvedSudoku;
     }
 
     public Timestamp getModifiedAt() {
